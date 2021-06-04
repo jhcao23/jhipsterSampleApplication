@@ -1,0 +1,553 @@
+//pre-existing entities:
+entity TouchUser {}
+entity Contact {}
+entity Corporate {}
+entity Event {}
+entity DocumentType {}
+
+enum GENDER { MALE, FEMALE, UNKNOWN }
+
+// Agency
+
+entity ClientInfo {
+	code String
+	gender String
+    address String
+    dob LocalDate
+    nationality String
+    pr Boolean
+    wechat String
+    fbId String
+}
+entity StudentInfo {}
+
+entity Agency {
+	code String
+}
+entity AgencyInfo {
+	name String
+    description String
+    logo String
+    code String
+}
+entity AgencyPartner {
+	code String
+	name String
+    description String
+    type String
+}
+entity ClientAgency {
+	code String
+    name String
+    description String
+}
+entity Agent {
+	code String
+    name String
+    description String
+}
+entity AgencyCorporate {
+    code String
+}
+entity AgencyClient {
+	code String
+    name String
+    description String
+}
+entity ClientAgencyAgent {
+	category String
+    name String
+}
+entity AgencyCaseTypeClientAgency {
+	direction String
+}
+
+// School
+entity SchoolInfo {
+	name String
+    description String
+    category String
+    url String
+    code String
+    infoOwner String
+}
+entity AgencySchool {
+	code String
+	contracted Boolean
+}
+entity SchoolContact {
+    code String
+    name String
+    description String
+	category String
+}
+entity Semester {
+	code String
+    name String
+    description String
+    year Integer
+    term String
+}
+entity Program {
+    code String
+	name String
+	description String
+    category String
+    url String
+}
+entity SchoolImportantDate {
+    code String
+    name String
+    description String
+	type String
+    impDate LocalDate
+}
+entity SchoolInfoSemester {
+    code String
+    name String
+    description String
+	startDt LocalDate
+    endDt LocalDate
+}
+entity AgencySchoolSemester {
+    code String
+    name String
+    description String
+}
+entity AgencySchoolStudent {
+    code String
+    name String
+    description String
+}
+entity AgencySchoolStudentSemester {
+    code String
+    name String
+    description String
+	invoiceDeadline ZonedDateTime
+    status String
+}
+entity AgencySemesterStudentEvent {
+    code String
+    name String
+    description String
+	eventDate LocalDate
+    eventStatus String
+    note String
+}
+entity ClientAgencySchool {
+    code String
+    name String
+    description String
+	contracted Boolean
+    commissionFeeFormula String
+}
+
+// Category
+entity ServiceCategory {
+	name String
+    code String
+    description String
+}
+entity Task {
+	code String
+    name String
+	description String
+    dueDt ZonedDateTime
+}
+entity Remainder {
+	code String
+    name String
+	description String
+	creator String
+    targetDt ZonedDateTime
+    method String
+    cell String
+    email String
+    fbId String
+    wechatId String
+    msg String
+    status String
+}
+// Case Type
+entity CaseType {
+    code String
+	name String
+    description String
+}
+entity TypeCaseProcedure {
+	rank Integer
+	code String
+    name String
+    description String
+}
+entity TypeCaseProcedureForm {
+	code String
+    name String
+    description String
+}
+entity TypeCaseProcedureFile {
+	code String
+    name String
+    description String
+}
+entity ChecklistType {
+    code String
+	checkFilesCompleted Boolean
+    checkFieldsCompleted Boolean
+    checkFeesCompleted Boolean
+}
+entity AgencyCaseType {
+    code String
+	name String
+    description String
+}
+entity AgencyCaseTypeStep {
+	rank Integer
+	code String
+    name String
+    description String
+}
+entity AgencyCaseTypeStepFile {
+	code String
+    name String
+    description String
+}
+entity AgencyCaseTypeStepForm {
+	code String
+    name String
+    description String
+}
+
+// Form
+entity Form {
+	code String
+	name String
+    description String
+	revision String
+    expiryDt ZonedDateTime
+    ownerType String
+    ownerId Long
+}
+entity Question {
+	code String
+    name String
+    description String
+    type String
+    subType String
+    otherRequireText Boolean
+    mandatory Boolean    
+}
+entity QuestionOptions {
+	rank Integer
+    option String
+}
+entity Solution {
+	code String
+    name String
+    description String
+}
+entity AgentSolution {
+	code String
+    name String
+    description String
+}
+entity ClientSolution {
+	code String
+    name String
+    description String
+}
+entity Answer {
+    code String
+}
+entity AnswerDate {
+	result LocalDate
+}
+entity AnswerDecimal {
+	result Double
+}
+entity AnswerText {
+	result String
+    subType String
+}
+entity AnswerInteger {
+	result Long
+}
+entity AnswerTimestamp {
+	result ZonedDateTime
+}
+entity AnswerBoolean {
+	result Boolean
+}
+entity AnswerSelection {
+	result Integer
+}
+entity AnswerMoney {
+	result BigDecimal
+}
+
+// Custom Fields
+entity AgencyCustomFields {
+	targetType String
+    code String
+    name String
+    description String
+    
+}
+
+// Work Case
+entity CaseTeamAgent {}
+entity CaseTeam {
+	code String
+	name String
+	description String 
+}
+entity TeamCase {}
+entity CaseReferral {
+	code String
+	name String
+	description String
+	status String
+	direction String
+}
+entity WorkCase {
+	code String
+	name String
+	description String
+    status String
+    dueDt ZonedDateTime
+}
+entity Checklist {
+    code String
+	filesCompleted Boolean
+    fieldsCompleted Boolean
+    feesCollected Boolean
+}
+entity WorkCaseStep {
+	code String
+	name String
+	description String
+}
+entity WorkCaseStepSolution {
+	code String
+	name String
+	description String
+}
+entity WorkCaseStepDoc{
+	code String
+	name String
+	description String
+    metaData String
+}
+
+// Invoice and Claim
+entity Invoice {
+	code String
+	name String
+	description String
+	direction String
+    status String
+    txDt ZonedDateTime
+    amount BigDecimal
+    targetType String
+    targetId Long
+}
+entity InvoiceDocument {
+	code String
+	name String
+	description String
+}
+entity Claim {
+	code String
+    name String
+    description String
+    direction String
+    status String
+    total BigDecimal
+}
+entity ClaimAdjustment {
+	code String
+	name String
+	description String
+	description String
+    adjustedAmount BigDecimal
+}
+entity ClaimStudent {
+	code String
+	name String
+	description String
+	rate BigDecimal
+    description String
+}
+entity ClaimTargetAgency {
+	code String
+	name String
+	description String
+	agencyName String
+}
+entity ClaimTargetSchool {
+	code String
+	name String
+	description String
+	schoolName String
+}
+
+// relationship
+relationship OneToOne {
+	Agency{agencyInfo} to AgencyInfo
+    TeamCase{workCase} to WorkCase
+    AgencyCorporate{agency} to Agency
+    AgencyCorporate{agent} to Agent
+    ClientAgencyAgent{contact} to Contact
+    SchoolContact{contact} to Contact
+    ClientInfo{contact} to Contact
+    AgencySchool{schoolInfo} to SchoolInfo
+    StudentInfo{clientInfo} to ClientInfo
+    AgencyCorporate{corporate} to Corporate
+    
+}
+relationship ManyToOne {
+  	
+    Agent{touchUser} to TouchUser
+    Agent{agency} to Agency
+    AgencyPartner{agency} to Agency
+    
+    AgencyClient{agency} to Agency
+    AgencyClient{clientInfo} to ClientInfo
+    
+    AgencyCaseTypeClientAgency{agencyCaseType} to AgencyCaseType
+    AgencyCaseTypeClientAgency{clientAgency} to ClientAgency
+     
+	ClientAgency{agency} to Agency
+    ClientAgency{agencyInfo} to AgencyInfo
+    ClientAgencyAgent{clientAgency} to ClientAgency
+    
+    // School
+    Program{schoolInfo} to SchoolInfo
+  	SchoolContact{schoolInfo} to SchoolInfo
+    
+    SchoolInfoSemester{semester} to Semester
+    SchoolInfoSemester{schoolInfo} to SchoolInfo
+  	SchoolImportantDate{schoolInfoSemester} to SchoolInfoSemester
+  
+  	AgencySchool{agency} to Agency
+    ClientAgencySchool{agencySchool} to AgencySchool
+    ClientAgencySchool{clientAgency} to ClientAgency
+  
+  	AgencySchoolSemester{agencySchool} to AgencySchool
+    AgencySchoolSemester{schoolInfoSemester} to SchoolInfoSemester
+    
+  	AgencySchoolStudent{agencySchool} to AgencySchool
+    AgencySchoolStudent{agencyStudent} to AgencyClient
+    
+    AgencySchoolStudentSemester{agencySchoolStudent} to AgencySchoolStudent
+    AgencySchoolStudentSemester{agencySchoolSemester} to AgencySchoolSemester
+    AgencySemesterStudentEvent{agencySchoolStudentSemester} to AgencySchoolStudentSemester
+    
+    // Form
+    Form{parentForm} to Form
+    Question{form} to Form
+    QuestionOptions{question} to Question
+    Solution{form} to Form
+    ClientSolution{solution} to Solution
+    ClientSolution{agencyClient} to AgencyClient
+    AgentSolution{solution} to Solution
+    AgentSolution{agent} to Agent
+    Answer{solution} to Solution
+    Answer{question} to Question
+    
+    // Case Type
+    CaseType{serviceCategory} to ServiceCategory
+    AgencyCaseType{agency} to Agency
+    AgencyCaseType{caseType} to CaseType
+    TypeCaseProcedure{caseType} to CaseType
+    TypeCaseProcedure{checklistType} to ChecklistType
+    TypeCaseProcedureForm{typeCaseProcedure} to TypeCaseProcedure
+    TypeCaseProcedureForm{form} to Form
+    TypeCaseProcedureFile{typeCaseProcedure} to TypeCaseProcedure
+    TypeCaseProcedureFile{documentType} to DocumentType
+    
+    AgencyCaseTypeStep{checklistType} to ChecklistType
+    AgencyCaseTypeStep{agencyCaseType} to AgencyCaseType
+    AgencyCaseTypeStepFile{agencyCaseTypeStep} to AgencyCaseTypeStep
+    AgencyCaseTypeStepFile{documentType} to DocumentType
+    AgencyCaseTypeStepForm{form} to Form
+    AgencyCaseTypeStepForm{agencyCaseTypeStep} to AgencyCaseTypeStep
+
+    // Work Case
+    WorkCase{agencyCaseType} to AgencyCaseType
+    TeamCase{caseTeam} to CaseTeam
+    CaseTeamAgent{team} to CaseTeam
+    CaseTeamAgent{agent} to Agent
+    CaseReferral{clientAgency} to ClientAgency
+    CaseReferral{workCase} to WorkCase
+    CaseReferral{destCase} to WorkCase
+    
+    WorkCaseStep{workCase} to WorkCase
+    WorkCaseStep{agent} to Agent
+    WorkCaseStep{checklist} to Checklist
+    WorkCaseStep{agencyCaseTypeStep} to AgencyCaseTypeStep
+    WorkCaseStepSolution{workCaseStep} to WorkCaseStep
+    WorkCaseStepSolution{solution} to Solution
+    WorkCaseStepDoc{document} to Document
+    WorkCaseStepDoc{workCaseStep} to WorkCaseStep
+    WorkCaseStepDoc{agencyCaseTypeStepFile} to AgencyCaseTypeStepFile
+    
+    // Invoice & Claim
+    Invoice{workCase} to WorkCase
+    InvoiceDocument{invoice} to Invoice
+    InvoiceDocument{document} to Document
+    
+    Claim{agency} to Agency
+    ClaimAdjustment{claim} to Claim
+    ClaimTargetAgency{claim} to Claim
+    ClaimTargetAgency{clientAgency} to ClientAgency
+    ClaimTargetSchool{claim} to Claim
+    ClaimTargetSchool{agencySchool} to AgencySchool
+    ClaimStudent{claim} to Claim
+	ClaimStudent{agencySchoolStudentSemester} to AgencySchoolStudentSemester    
+    
+    // Custom Fields
+    AgencyCustomFields{agency} to Agency
+    AgencyCustomFields{form} to Form
+    
+    // Task & Remainder
+    Task{agent} to Agent
+}
+
+// Document
+entity Document {}
+
+entity TypicalDocument {
+	code String
+    name String
+    description String
+	issuedPlace String
+    issuedDt LocalDate
+    expiryDt LocalDate
+    referenceNo String
+}
+entity Visa {
+	code String
+    name String
+    description String
+}
+entity Passport {
+	code String
+    name String
+    description String
+}
+relationship OneToOne {
+	TypicalDocument{document} to Document
+    Visa{typicalDocument} to TypicalDocument
+    Passport{typicalDocument} to TypicalDocument
+}
+
+// Set pagination options
+// paginate * with infinite-scroll
+// paginate * with pagination
+// dto * with mapstruct
+
+// Set service options to all except few
+service all with serviceImpl
+// Set an angular suffix
+// angularSuffix * with mySuffix
